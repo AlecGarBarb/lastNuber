@@ -8,8 +8,11 @@ import android.location.Location
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v4.app.ActivityCompat
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.TextView
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 
@@ -21,10 +24,23 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.Marker
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.activity_nuber_maps.*
+import kotlinx.android.synthetic.main.activity_nuber_maps.view.*
 
 
 class NUberMapsActivity : SupportMapFragment(),
     OnMapReadyCallback , GoogleMap.OnMarkerClickListener{
+
+    /**
+     * Provides the entry point to the Fused Location Provider API.
+     */
+    //private var mFusedLocationClient: FusedLocationProviderClient? = null
+
+    /**
+     * Represents a geographical location.
+     */
+    //protected var mLastLocation: Location? = null
+
 
     override fun onMarkerClick(p0: Marker?) = false
 
@@ -32,12 +48,19 @@ class NUberMapsActivity : SupportMapFragment(),
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation : Location
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkUserLogged()
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         getMapAsync(this)
+
+        /*location.setOnClickListener { view ->
+            fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+        }*/
+
+
     }
 
     /**
@@ -65,6 +88,7 @@ class NUberMapsActivity : SupportMapFragment(),
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
                 placeMarkerOnMap(currentLatLng)
             }
+
         }
 
 
@@ -86,5 +110,10 @@ class NUberMapsActivity : SupportMapFragment(),
             startActivity(intent)
         }
     }
+
+
+
+
+
 
 }

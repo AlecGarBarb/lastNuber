@@ -24,7 +24,6 @@ import kotlinx.android.synthetic.main.fragment_nuber_products.*
  *
  */
 class NuberProductsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
 
 
 
@@ -59,8 +58,12 @@ class NuberProductsFragment : Fragment() {
                     lista.add(producto!!)
                 }
                 list_recycler_view.adapter = NuberProductsAdapter(lista)
+
             }
+
         })
+
+
     }
 
 
